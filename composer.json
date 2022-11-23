@@ -1,0 +1,25 @@
+{
+    "name": "hexlet/code",
+    "description": "Difference Calculator",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        },
+        "files": [
+            "vendor/docopt/docopt/src/docopt.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "NickShelud",
+            "email": "N.She.1997@mail.ru"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    },
+    "bin": [
+        "bin/gendiff"
+    ]
+}
