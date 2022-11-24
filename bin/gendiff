@@ -6,11 +6,13 @@ require __DIR__.'/../src/docopt.php';
 $doc = <<<'DOCOPT'
 Generate diff
 Usage:
-    Generate diff (-h| --help)
-    Generate diff (-v|--version)
+    gendiff (-h| --help)
+    gendiff (-v|--version)
+    gendiff [--format <fmt>] <firstfile> <secondfile>
 Options:
-  -h --help                show this screen
-  --version                show version
+  -h --help                Show this screen
+  --version                Show version
+  --format <fmt>           Report format [default: stylish]
 DOCOPT;
 
 $result = Docopt::handle($doc, array('version'=>'1.0.0rc2'));
