@@ -16,5 +16,15 @@ Options:
 DOCOPT;
 
 $result = Docopt::handle($doc, array('version'=>'1.0.0rc2'));
-foreach ($result as $k=>$v)
-    echo $k.': '.json_encode($v).PHP_EOL;
+//foreach ($result as $k=>$v)
+//    echo $k.': '.json_encode($v).PHP_EOL;
+
+$pathToFile1 = realpath($result['<firstfile>']);
+$pathTofile2 = realpath($result['<secondfile>']);
+var_dump($pathToFile2);
+
+if (!$pathToFile1 or !$pathTofile2) {
+  echo 'warning! need two files     ';
+} else {
+  echo 'done      ';
+}
