@@ -1,7 +1,14 @@
 #!/usr/bin/env php 
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
-require __DIR__.'/../src/docopt.php';
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
+
+if (file_exists($autoloadPath1)) {
+    require_once $autoloadPath1;
+} else {
+    require_once $autoloadPath2;
+}
+require_once __DIR__.'/../src/docopt.php';
 
 $doc = <<<'DOCOPT'
 Generate diff
@@ -16,11 +23,12 @@ Options:
 DOCOPT;
 
 $result = Docopt::handle($doc, array('version'=>'1.0.0rc2'));
-//foreach ($result as $k=>$v)
-//    echo $k.': '.json_encode($v).PHP_EOL;
 
+$format = $result['--format'];
+//print_r($format);
 $pathToFile1 = realpath($result['<firstfile>']);
 $pathTofile2 = realpath($result['<secondfile>']);
+var_dump($pathToFile1);
 var_dump($pathToFile2);
 
 if (!$pathToFile1 or !$pathTofile2) {
