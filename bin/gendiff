@@ -10,6 +10,8 @@ if (file_exists($autoloadPath1)) {
 }
 require_once __DIR__.'/../src/docopt.php';
 
+use function DiffCalc\Differ\getDiffCalc;
+
 $doc = <<<'DOCOPT'
 Generate diff
 Usage:
@@ -25,14 +27,11 @@ DOCOPT;
 $result = Docopt::handle($doc, array('version'=>'1.0.0rc2'));
 
 $format = $result['--format'];
-//print_r($format);
 $pathToFile1 = realpath($result['<firstfile>']);
-$pathTofile2 = realpath($result['<secondfile>']);
-var_dump($pathToFile1);
-var_dump($pathToFile2);
+$pathToFile2 = realpath($result['<secondfile>']);
 
-if (!$pathToFile1 or !$pathTofile2) {
-  echo 'warning! need two files     ';
+if (!$pathToFile1 or !$pathToFile2) {
+  echo 'warning! need two files';
 } else {
-  echo 'done      ';
+  getDiffCalc($format, $pathToFile1, $pathToFile2);
 }
