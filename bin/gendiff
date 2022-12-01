@@ -33,5 +33,5 @@ $pathToFile2 = realpath($result['<secondfile>']);
 if (!$pathToFile1 or !$pathToFile2) {
   echo 'warning! need two files';
 } else {
-  getDiffCalc($format, $pathToFile1, $pathToFile2);
+  print_r(getDiffCalc($format, $pathToFile1, $pathToFile2));
 }

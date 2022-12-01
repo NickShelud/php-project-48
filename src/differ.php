@@ -58,6 +58,6 @@ function getDiffCalc($formatOutput, $firstPath, $secondPath)
     
     $diffFilesToStr = implode("\n", $result);
     
-    return ""{\n" . "{$diffFilesToStr}" . "\n}"";
+    return "{\n" . "{$diffFilesToStr}" . "\n}\n";
 }
 
