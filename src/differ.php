@@ -4,7 +4,7 @@ namespace DiffCalc\Differ;
 
 use function Functional\flatten;
 
-function getContentFileFromPath($path)
+function getContentFileFromPath(string $path)
 {
     $contentFromFile = trim(file_get_contents($path), '{}');
 
@@ -30,7 +30,7 @@ function getContentFileFromPath($path)
     return $result;
 }
 
-function getDiffCalc($formatOutput, $firstPath, $secondPath)
+function getDiffCalc(string $formatOutput, string $firstPath, string $secondPath)
 {
     $contentFromFirstFile = getContentFileFromPath($firstPath);
     ksort($contentFromFirstFile);
