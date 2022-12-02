@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 use function DiffCalc\Differ\getDiffCalc;
 
-class testDiffer extends TestCase
+class DifferTest extends TestCase
 {
     public function testsDiffer(): void
     {

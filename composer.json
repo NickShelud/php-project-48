@@ -8,7 +8,7 @@
         },
         "files": [
             "vendor/docopt/docopt/src/docopt.php",
-            "src/differ.php"
+            "src/Differ.php"
         ]
     },
     "authors": [
