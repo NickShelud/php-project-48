@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: testDiffer
-      - run: make test
+        run: make test
       - name: linter
-      - run: make lint
+        run: make lint
