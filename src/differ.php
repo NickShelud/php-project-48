@@ -30,9 +30,8 @@ function getDiffCalc(string $formatOutput, string $firstPath, string $secondPath
     foreach ($uniqueValuesFromSecondFile as $key => $value) {
         $result[] = "+ {$key}: {$value}";
     }
-    
+
     $jsonStr = trim(json_encode($result, JSON_PRETTY_PRINT), '[]');
     $jsonStr = str_replace('"', '', $jsonStr);
     return '{' . $jsonStr . '}';
 }
-
