@@ -1,5 +1,8 @@
 install:
 	composer install
 
-lint :
+lint:
 	phpcs src bin
+
+test:
+	composer exec --verbose phpunit tests
