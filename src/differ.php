@@ -12,7 +12,7 @@ function getDiffCalc(string $formatOutput, string $firstPath, string $secondPath
 
     $result = [];
 
-    $uniqueValuesFromFirstFile = array_diff_key($contentFromFirstFile, $contentFromSecondFile); // whit -
+    $uniqueValuesFromFirstFile = array_diff_key($contentFromFirstFile, $contentFromSecondFile); // with -
     $uniqueValuesFromSecondFile = array_diff_key($contentFromSecondFile, $contentFromFirstFile); // with +
     $intersect = array_intersect_assoc($contentFromFirstFile, $contentFromSecondFile); // nothing
 
@@ -32,6 +32,7 @@ function getDiffCalc(string $formatOutput, string $firstPath, string $secondPath
     }
     
     $jsonStr = trim(json_encode($result, JSON_PRETTY_PRINT), '[]');
+    $jsonStr = str_replace('"', '', $jsonStr);
     return '{' . $jsonStr . '}';
 }
 
