@@ -5,7 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      name: testDiffer
-      run: make test
-      name: linter
-      run: make lint
+      - name: testDiffer
+      - run: make test
+      - name: linter
+      - run: make lint
