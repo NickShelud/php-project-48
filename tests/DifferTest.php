@@ -8,7 +8,7 @@ use function DiffCalc\Differ\getDiffCalc;
 
 class DifferTest extends TestCase
 {
-    public function testDiffer(): void
+    public function testGetDiffCalc(): void
     {
         $testFirstPath = __DIR__ . "/fixtures/file1.json";
         $testSecondPath = __DIR__ . "/fixtures/file2.json";
