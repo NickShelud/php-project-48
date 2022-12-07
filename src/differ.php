@@ -3,12 +3,13 @@
 namespace DiffCalc\Differ;
 
 use function Functional\flatten;
+use function DiffCalc\Parses\pathToArray;
 
 function getDiffCalc(string $formatOutput, string $firstPath, string $secondPath)
 {
-    $contentFromFirstFile = json_decode(file_get_contents($firstPath), true);
+    $contentFromFirstFile = pathToArray($firstPath);
     ksort($contentFromFirstFile);
-    $contentFromSecondFile = json_decode(file_get_contents($secondPath), true);
+    $contentFromSecondFile = pathToArray($secondPath);
 
     $result = [];
 
