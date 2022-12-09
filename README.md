@@ -8,3 +8,4 @@
 [![GitHub Actions Demo](https://github.com/NickShelud/php-project-48/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/NickShelud/php-project-48/actions/workflows/github-actions-demo.yml)
 
 [![asciicast](https://asciinema.org/a/541742.svg)](https://asciinema.org/a/541742)
+[![asciicast](https://asciinema.org/a/544208.svg)](https://asciinema.org/a/544208)

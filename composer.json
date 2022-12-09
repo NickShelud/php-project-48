@@ -30,6 +30,7 @@
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "phpunit/php-code-coverage": "^9.2"
     }
 }
