@@ -9,7 +9,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - name: testDiffer
-        run: make test
-      - name: linter
+      - name: Run linter
         run: make lint
+      - name: Run tests
+        run: make test
