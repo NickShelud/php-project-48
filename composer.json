@@ -11,7 +11,8 @@
             "src/Differ.php",
             "src/Parses.php",
             "src/Build.php",
-            "src/Formatter.php"
+            "src/Formatter.php",
+            "src/Formatters/stylish.php"
         ]
     },
     "authors": [

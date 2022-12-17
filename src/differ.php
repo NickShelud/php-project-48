@@ -11,10 +11,9 @@ use function Differ\Build\getBuildDiff;
 function getDiffCalc(string $firstPath, string $secondPath, string $formatOutput = 'stylish')
 {
     $contentFromFirstFile = pathToArray($firstPath);
-    ksort($contentFromFirstFile);
     $contentFromSecondFile = pathToArray($secondPath);
-    ksort($contentFromSecondFile);
 
     $buildDiff = getBuildDiff($contentFromFirstFile, $contentFromSecondFile);
-    return getFormatted($buildDiff);
+
+    return getFormatted($buildDiff, $formatOutput);
 }

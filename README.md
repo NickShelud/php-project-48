@@ -7,5 +7,11 @@
 
 [![GitHub Actions Demo](https://github.com/NickShelud/php-project-48/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/NickShelud/php-project-48/actions/workflows/github-actions-demo.yml)
 
+Comparing flat json files
 [![asciicast](https://asciinema.org/a/541742.svg)](https://asciinema.org/a/541742)
-[![asciicast](https://asciinema.org/a/544208.svg)](https://asciinema.org/a/544208)
+
+Comparing flat yml files
+[![asciicast](https://asciinema.org/a/546348.svg)](https://asciinema.org/a/546348)
+
+Сomparing nested yml and json files
+[![asciicast](https://asciinema.org/a/546347.svg)](https://asciinema.org/a/546347)

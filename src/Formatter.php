@@ -2,19 +2,10 @@
 
 namespace DiffCalc\Formatter;
 
-use function Functional\flatten;
+use function DiffCalc\Formatter\Stylish\getStylish;
 
-function arrayToString(string $sign, array $array)
-{
-    $key = key($array);
-    $value = $array[$key];
-
-    return "{$sign} {$key}: {$value}";
-}
-
-function getFormatted(array $comparisonArray) {
-    $encodeContent = json_encode($comparisonArray, JSON_PRETTY_PRINT);
-    $char = ['"', ','];
-    $formattedContent = str_replace($char, '', $encodeContent);
-    return $formattedContent;
+function getFormatted(array $comparisonArray, string $format = 'stylish') {
+    if ($format === 'stylish') {
+        return getStylish($comparisonArray);
+    }
 }
