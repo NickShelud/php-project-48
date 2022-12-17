@@ -13,7 +13,7 @@ function arrayToString(string $sign, array $array)
 }
 
 function getFormatted(array $comparisonArray) {
-    $encodeContent json_encode($comparisonArray, JSON_PRETTY_PRINT);
+    $encodeContent = json_encode($comparisonArray, JSON_PRETTY_PRINT);
     $char = ['"', ','];
     $formattedContent = str_replace($char, '', $encodeContent);
     return $formattedContent;
