@@ -3,9 +3,6 @@
     "description": "Difference Calculator",
     "license": "MIT",
     "autoload": {
-        "psr-4": {
-            "Hexlet\\Code\\": "src/"
-        },
         "files": [
             "vendor/docopt/docopt/src/docopt.php",
             "src/Differ.php",
