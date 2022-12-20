@@ -18,3 +18,6 @@ Comparing flat yml files
 
 Comparing nested structure and plain output
 [![asciicast](https://asciinema.org/a/546953.svg)](https://asciinema.org/a/546953)
+
+Json format
+[![asciicast](https://asciinema.org/a/546957.svg)](https://asciinema.org/a/546957)

@@ -24,5 +24,10 @@ class Test extends TestCase
         $testStylishPath2 = __DIR__ . "/fixtures/file2.json";
         $correctOutputThirdTest = file_get_contents(__DIR__ . "/fixtures/resultTest3.txt");
         $this->assertEquals($correctOutputThirdTest, getDiffCalc($testPlainPath1, $testStylishPath2, 'plain'));
+
+        $testJsonPath1 = __DIR__ . "/fixtures/file1.json";
+        $testJsonPath2 = __DIR__ . "/fixtures/file2.json";
+        $correctOutputFourthTest = file_get_contents(__DIR__ . "/fixtures/resultTest4.json");
+        $this->assertEquals($correctOutputFourthTest, getDiffCalc($testJsonPath1, $testJsonPath2, 'json'));
     }
 }
