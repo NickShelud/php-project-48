@@ -13,19 +13,19 @@ function getStylish(array $comparisonArray)
         if ($status === 'no change') {
             $acc[$key] = $value;
         } elseif ($status === 'update') {
-            $acc['- ' . $key] = $item['oldValue'];
-            $acc['+ ' . $key] = $value;
+            $acc['- ' . $key] = $value;
+            $acc['+ ' . $key] = $item['oldValue'];
         } elseif ($status === 'remove') {
             $acc['- ' . $key] = $value;
         } elseif ($status === 'add') {
             $acc['+ ' . $key] = $value;
-       } elseif ($status === 'array') {
-           $acc[$key] = getStylish($value);
-       }
+        } elseif ($status === 'array') {
+            $acc[$key] = getStylish($value);
+        }
 
         return $acc;
-    },[]);
-    
+    }, []);
+
     return $result;
 }
 

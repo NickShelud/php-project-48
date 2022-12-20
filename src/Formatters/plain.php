@@ -6,7 +6,7 @@ use function Functional\flatten;
 
 function getPlain(array $comparisonArray, string $oldKey = '')
 {
-    $result = array_reduce($comparisonArray, function ($acc, $item) use ($oldKey){
+    $result = array_reduce($comparisonArray, function ($acc, $item) use ($oldKey) {
         $status = $item['status'];
         $key = $item['key'];
 
@@ -15,13 +15,19 @@ function getPlain(array $comparisonArray, string $oldKey = '')
         }
 
         $value = $item['value'];
+        if (gettype($value) === 'boolean') {
+            $value = $value ? 'true' : 'false';
+        } elseif (gettype($value) === 'string') {
+            $value = "'{$value}'";
+        } elseif (gettype($value) === 'NULL') {
+            $value === 'null';
+        }
+
         if (is_array($value) and $status != 'array') {
             $value = "[complex value]";
-        } 
+        }
 
         switch ($status) {
-
-
             case 'add':
                 $acc[] = "Property '{$key}' was added with value: {$value}";
                 break;
@@ -29,7 +35,8 @@ function getPlain(array $comparisonArray, string $oldKey = '')
                 $acc[] = "Property '{$key}' was removed";
                 break;
             case 'update':
-                $acc[] = "Property '{$key}' was updated. From {$item['oldValue']} to {$value}";
+                $item['oldValue'] = $item['oldValue'] ? "'{$item['oldValue']}'" : 'null';
+                $acc[] = "Property '{$key}' was updated. From {$value} to {$item['oldValue']}";
                 break;
             case 'array':
                 $acc[] = getPlain($value, $key);
@@ -44,6 +51,8 @@ function getPlain(array $comparisonArray, string $oldKey = '')
 function getPlainDiffFormat(array $array)
 {
     $encode = json_encode($array, JSON_PRETTY_PRINT, JSON_PRESERVE_ZERO_FRACTION);
-    $char = ['"', ',', '[', ']'];
-    return '    ' . ltrim(str_replace($char, '', $encode));
+    $char = ['"', ',', '    '];
+    $trim = trim(str_replace($char, '', $encode), '[]');
+
+    return ltrim($trim);
 }

@@ -17,4 +17,4 @@ Comparing flat yml files
 [![asciicast](https://asciinema.org/a/546347.svg)](https://asciinema.org/a/546347)
 
 Comparing nested structure and plain output
-[![asciicast](https://asciinema.org/a/546912.svg)](https://asciinema.org/a/546912)
+[![asciicast](https://asciinema.org/a/546953.svg)](https://asciinema.org/a/546953)
