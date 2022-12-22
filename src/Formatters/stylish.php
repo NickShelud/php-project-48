@@ -2,6 +2,8 @@
 
 namespace DiffCalc\Formatter\Stylish;
 
+use function Differ\Build\getValue;
+
 function getStylish(array $comparisonArray)
 {
     //var_dump($comparisonArray);
@@ -9,6 +11,10 @@ function getStylish(array $comparisonArray)
         $key = $item['key'];
         $value = $item['value'];
         $status = $item['status'];
+
+        if ($status != 'array') {
+            $value = getValue($value);
+        }
 
         if ($status === 'no change') {
             $acc[$key] = $value;

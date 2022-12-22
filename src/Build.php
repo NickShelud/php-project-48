@@ -40,3 +40,15 @@ function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
 
     return $result;
 }
+
+function getValue($value)
+{
+    if ($value === true) {
+        return 'true';
+    } elseif ($value === false) {
+        return 'false';
+    } elseif (gettype($value) === 'NULL') {
+        return 'null';
+    }
+    return $value;
+}
