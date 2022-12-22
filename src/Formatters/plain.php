@@ -3,6 +3,7 @@
 namespace DiffCalc\Formatter\Plain;
 
 use function Functional\flatten;
+use function Differ\Build\getValue;
 
 function getPlain(array $comparisonArray, string $oldKey = '')
 {
@@ -15,13 +16,8 @@ function getPlain(array $comparisonArray, string $oldKey = '')
         }
 
         $value = $item['value'];
-        if (gettype($value) === 'boolean') {
-            $value = $value ? 'true' : 'false';
-        } elseif (gettype($value) === 'string') {
-            $value = "'{$value}'";
-        } elseif (gettype($value) === 'NULL') {
-            $value === 'null';
-        }
+
+        $value = gettype($value) != 'string' ?  getValue($value) : "'{$value}'";
 
         if (is_array($value) and $status != 'array') {
             $value = "[complex value]";
