@@ -1,6 +1,6 @@
 <?php
 
-namespace DiffCalc\Differ;
+namespace Differ\Differ;
 
 use function Functional\flatten;
 use function DiffCalc\Parses\pathToArray;
