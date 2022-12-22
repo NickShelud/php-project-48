@@ -47,7 +47,7 @@ function getValue($value)
         return 'true';
     } elseif ($value === false) {
         return 'false';
-    } elseif (gettype($value) === 'NULL') {
+    } elseif ($value === null) {
         return 'null';
     }
     return $value;
