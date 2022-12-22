@@ -8,7 +8,7 @@ use function DiffCalc\Formatter\arrayToString;
 use function DiffCalc\Formatter\getFormatted;
 use function Differ\Build\getBuildDiff;
 
-function getDiffCalc(string $firstPath, string $secondPath, string $formatOutput = 'stylish')
+function genDiff(string $firstPath, string $secondPath, string $formatOutput = 'stylish')
 {
     $contentFromFirstFile = pathToArray($firstPath);
     $contentFromSecondFile = pathToArray($secondPath);
