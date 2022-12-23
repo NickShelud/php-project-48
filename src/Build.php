@@ -8,7 +8,7 @@ function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
     ksort($merge);
     $keys = array_keys($merge);
 
-    $result = array_map(function ($key) use ($contentFromFirstFile, $contentFromSecondFile) {
+    return array_map(function ($key) use ($contentFromFirstFile, $contentFromSecondFile) {
         if (key_exists($key, $contentFromFirstFile) and key_exists($key, $contentFromSecondFile)) {
             if (is_array($contentFromFirstFile[$key]) and is_array($contentFromSecondFile[$key])) {
                 return ['key' => $key,
