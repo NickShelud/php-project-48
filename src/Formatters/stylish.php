@@ -2,29 +2,22 @@
 
 namespace DiffCalc\Formatter\Stylish;
 
-use function Differ\Build\getValue;
-
 function getStylish(array $comparisonArray)
 {
     //var_dump($comparisonArray);
     $result = array_reduce($comparisonArray, function ($acc, $item) {
         $key = $item['key'];
-        $value = isset($item['value']) ? $item['value'] : $item['children'];
         $status = $item['status'];
 
-        if ($status != 'root') {
-            $value = getValue($value);
-        }
-
         if ($status === 'no change') {
-            $acc[$key] = $value;
+            $acc[$key] = $item['value'];
         } elseif ($status === 'update') {
-            $acc['- ' . $key] = $value;
+            $acc['- ' . $key] = $item['value'];
             $acc['+ ' . $key] = $item['oldValue'];
         } elseif ($status === 'remove') {
-            $acc['- ' . $key] = $value;
+            $acc['- ' . $key] = $item['value'];
         } elseif ($status === 'add') {
-            $acc['+ ' . $key] = $value;
+            $acc['+ ' . $key] = $item['value'];
         } elseif ($status === 'root') {
             $acc[$key] = getStylish($item['children']);
         }

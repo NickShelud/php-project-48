@@ -15,27 +15,27 @@ function getPlain(array $comparisonArray, string $oldKey = '')
             $key = "{$oldKey}.{$key}";
         }
 
-        $value = isset($item['value']) ? $item['value'] : $item['children'];
-
-        $value = gettype($value) != 'string' ?  getValue($value) : "'{$value}'";
-
-        if (is_array($value) and $status != 'root') {
-            $value = "[complex value]";
+        if (isset($item['value'])) {
+            if (is_array($item['value']) and $status != 'root') {
+                $item['value'] = "[complex value]";
+            } else {
+                $item['value'] = gettype($item['value']) != 'string' ?  getValue($item['value']) : "'{$item['value']}'";
+            }
         }
 
         switch ($status) {
             case 'add':
-                $acc[] = "Property '{$key}' was added with value: {$value}";
+                $acc[] = "Property '{$key}' was added with value: {$item['value']}";
                 break;
             case 'remove':
                 $acc[] = "Property '{$key}' was removed";
                 break;
             case 'update':
                 $item['oldValue'] = $item['oldValue'] ? "'{$item['oldValue']}'" : 'null';
-                $acc[] = "Property '{$key}' was updated. From {$value} to {$item['oldValue']}";
+                $acc[] = "Property '{$key}' was updated. From {$item['value']} to {$item['oldValue']}";
                 break;
             case 'root':
-                $acc[] = getPlain($value, $key);
+                $acc[] = getPlain($item['children'], $key);
         }
 
         return $acc;
