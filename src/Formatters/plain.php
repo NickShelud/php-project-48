@@ -51,5 +51,5 @@ function getPlainDiffFormat(array $array)
     $char = ['"', ',', '    '];
     $trim = trim(str_replace($char, '', $encode), '[]');
 
-    return ltrim($trim);
+    return trim($trim);
 }
