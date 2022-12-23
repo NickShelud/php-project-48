@@ -1,8 +1,8 @@
 [
     {
         "key": "common",
-        "status": "array",
-        "value": [
+        "status": "root",
+        "children": [
             {
                 "key": "follow",
                 "status": "add",
@@ -38,12 +38,12 @@
             },
             {
                 "key": "setting6",
-                "status": "array",
-                "value": [
+                "status": "root",
+                "children": [
                     {
                         "key": "doge",
-                        "status": "array",
-                        "value": [
+                        "status": "root",
+                        "children": [
                             {
                                 "key": "wow",
                                 "status": "update",
@@ -68,8 +68,8 @@
     },
     {
         "key": "group1",
-        "status": "array",
-        "value": [
+        "status": "root",
+        "children": [
             {
                 "key": "baz",
                 "status": "update",

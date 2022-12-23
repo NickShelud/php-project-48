@@ -15,11 +15,11 @@ function getPlain(array $comparisonArray, string $oldKey = '')
             $key = "{$oldKey}.{$key}";
         }
 
-        $value = $item['value'];
+        $value = isset($item['value']) ? $item['value'] : $item['children'];
 
         $value = gettype($value) != 'string' ?  getValue($value) : "'{$value}'";
 
-        if (is_array($value) and $status != 'array') {
+        if (is_array($value) and $status != 'root') {
             $value = "[complex value]";
         }
 
@@ -34,7 +34,7 @@ function getPlain(array $comparisonArray, string $oldKey = '')
                 $item['oldValue'] = $item['oldValue'] ? "'{$item['oldValue']}'" : 'null';
                 $acc[] = "Property '{$key}' was updated. From {$value} to {$item['oldValue']}";
                 break;
-            case 'array':
+            case 'root':
                 $acc[] = getPlain($value, $key);
         }
 

@@ -9,10 +9,10 @@ function getStylish(array $comparisonArray)
     //var_dump($comparisonArray);
     $result = array_reduce($comparisonArray, function ($acc, $item) {
         $key = $item['key'];
-        $value = $item['value'];
+        $value = isset($item['value']) ? $item['value'] : $item['children'];
         $status = $item['status'];
 
-        if ($status != 'array') {
+        if ($status != 'root') {
             $value = getValue($value);
         }
 
@@ -25,8 +25,8 @@ function getStylish(array $comparisonArray)
             $acc['- ' . $key] = $value;
         } elseif ($status === 'add') {
             $acc['+ ' . $key] = $value;
-        } elseif ($status === 'array') {
-            $acc[$key] = getStylish($value);
+        } elseif ($status === 'root') {
+            $acc[$key] = getStylish($item['children']);
         }
 
         return $acc;
