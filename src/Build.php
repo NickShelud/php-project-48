@@ -38,7 +38,6 @@ function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
             'status' => 'add',
             'value' => $contentFromSecondFile[$key]];
         }
-
     }, $keys);
 
 
