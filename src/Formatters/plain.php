@@ -31,8 +31,9 @@ function getPlain(array $comparisonArray, string $oldKey = '')
                 $acc[] = "Property '{$key}' was removed";
                 break;
             case 'update':
-                $item['oldValue'] = $item['oldValue'] ? "'{$item['oldValue']}'" : 'null';
-                $acc[] = "Property '{$key}' was updated. From {$item['value']} to {$item['oldValue']}";
+                //$item['oldValue'] = $item['oldValue'] ? "'{$item['oldValue']}'" : 'null';
+                $oldValue = gettype($item['oldValue']) === 'array' ? "[complex value]" : getValue($item['oldValue']);
+                $acc[] = "Property '{$key}' was updated. From {$item['value']} to {$oldValue}";
                 break;
             case 'root':
                 $acc[] = getPlain($item['children'], $key);

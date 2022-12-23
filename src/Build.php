@@ -54,6 +54,8 @@ function getValue($value)
         return 'false';
     } elseif ($value === null) {
         return 'null';
+    } elseif (gettype($value) === 'string') {
+        return "'{$value}'";
     }
     return $value;
 }
