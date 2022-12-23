@@ -4,8 +4,7 @@ namespace Differ\Build;
 
 function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
 {
-    $merge = array_merge($contentFromFirstFile, $contentFromSecondFile);
-    ksort($merge);
+    $merge = ksort(array_merge($contentFromFirstFile, $contentFromSecondFile));
     $keys = array_keys($merge);
 
     return array_map(function ($key) use ($contentFromFirstFile, $contentFromSecondFile) {
@@ -39,12 +38,9 @@ function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
             'value' => $contentFromSecondFile[$key]];
         }
     }, $keys);
-
-
-    return $result;
 }
 
-function getValue($value)
+function getValue(mixed $value)
 {
     if ($value === true) {
         return 'true';
