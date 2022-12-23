@@ -8,39 +8,38 @@ function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
     ksort($merge);
     $keys = array_keys($merge);
 
-    $result = array_reduce($keys, function ($acc, $key) use ($contentFromFirstFile, $contentFromSecondFile) {
+    $result = array_map(function ($key) use ($contentFromFirstFile, $contentFromSecondFile) {
         if (key_exists($key, $contentFromFirstFile) and key_exists($key, $contentFromSecondFile)) {
             if (is_array($contentFromFirstFile[$key]) and is_array($contentFromSecondFile[$key])) {
-                $acc[] = ['key' => $key,
+                return ['key' => $key,
                 'status' => 'root',
                 'children' => getBuildDiff($contentFromFirstFile[$key], $contentFromSecondFile[$key])];
             } elseif ($contentFromFirstFile[$key] === $contentFromSecondFile[$key]) {
-                $acc[] = ['key' => $key,
+                return ['key' => $key,
                 'status' => 'no change',
                 'value' => $contentFromFirstFile[$key]];
             } elseif ($contentFromFirstFile[$key] != $contentFromSecondFile[$key]) {
-                $acc[] = ['key' => $key,
+                return ['key' => $key,
                 'status' => 'update',
                 'value' => $contentFromFirstFile[$key],
                 'oldValue' => $contentFromSecondFile[$key]];
             } elseif (gettype($contentFromFirstFile[$key]) != gettype($contentFromSecondFile[$key])) {
-                $acc[] = ['key' => $key,
+                return ['key' => $key,
                 'status' => 'update',
                 'value' => $contentFromFirstFile[$key],
                 'oldValue' => $contentFromSecondFile[$key]];
             }
         } elseif (key_exists($key, $contentFromFirstFile) and !key_exists($key, $contentFromSecondFile)) {
-            $acc[] = ['key' => $key,
+            return ['key' => $key,
             'status' => 'remove',
             'value' => $contentFromFirstFile[$key]];
         } elseif (!key_exists($key, $contentFromFirstFile) and key_exists($key, $contentFromSecondFile)) {
-            $acc[] = ['key' => $key,
+            return ['key' => $key,
             'status' => 'add',
             'value' => $contentFromSecondFile[$key]];
         }
 
-        return $acc;
-    }, []);
+    }, $keys);
 
 
     return $result;
