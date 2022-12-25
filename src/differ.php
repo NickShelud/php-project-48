@@ -9,8 +9,8 @@ use function Differ\Build\getBuildDiff;
 
 function genDiff(string $firstPath, string $secondPath, string $formatOutput = 'stylish')
 {
-    $contentFromFirstFile = pathToArray($firstPath);
-    $contentFromSecondFile = pathToArray($secondPath);
+    $contentFromFirstFile = pathToArray(file_get_contents($firstPath), $firstPath);
+    $contentFromSecondFile = pathToArray(file_get_contents($secondPath), $secondPath);
 
     $buildDiff = getBuildDiff($contentFromFirstFile, $contentFromSecondFile);
 
