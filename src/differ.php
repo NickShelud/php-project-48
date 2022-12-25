@@ -4,7 +4,6 @@ namespace Differ\Differ;
 
 use function Functional\flatten;
 use function DiffCalc\Parses\pathToArray;
-use function DiffCalc\Formatter\arrayToString;
 use function DiffCalc\Formatter\getFormatted;
 use function Differ\Build\getBuildDiff;
 

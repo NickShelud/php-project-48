@@ -8,10 +8,11 @@ use Symfony\Component\Yaml\Parser;
 function pathToArray(string $path)
 {
     $format = Yaml::parse($path, Yaml::PARSE_OBJECT_FOR_MAP);
-    $format = pathinfo($format, PATHINFO_EXTENSION);
-    if ($format === 'json') {
-        return json_decode(file_get_contents($path), true);
-    } elseif ($format === 'yml' or $format === 'yaml') {
+    $formatFile = pathinfo($format, PATHINFO_EXTENSION);
+    if ($formatFile === 'json') {
+        $contentFile = file_get_contents($path);
+        return json_decode($contentFile, true);
+    } elseif ($formatFile === 'yml' or $formatFile === 'yaml') {
         return Yaml::parseFile($path);
     }
 }
