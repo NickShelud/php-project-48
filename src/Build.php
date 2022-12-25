@@ -2,9 +2,16 @@
 
 namespace Differ\Build;
 
+function getUnionContent(array $firstArray, array $secondArray)
+{
+    $merge = array_merge($firstArray, $secondArray);
+    return ksort($merge);
+}
+
 function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
 {
-    $merge = ksort(array_merge($contentFromFirstFile, $contentFromSecondFile));
+    $merge = array_merge($contentFromFirstFile, $contentFromSecondFile);
+    ksort($merge);
     $keys = array_keys($merge);
 
     return array_map(function ($key) use ($contentFromFirstFile, $contentFromSecondFile) {
@@ -50,6 +57,8 @@ function getValue(mixed $value)
         return 'null';
     } elseif (gettype($value) === 'string') {
         return "'{$value}'";
+    } elseif (is_array($value)) {
+        return "[complex value]";
     }
     return $value;
 }

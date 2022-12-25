@@ -7,7 +7,7 @@ use function Differ\Build\getValue;
 
 function getPlain(array $comparisonArray, string $oldKey = '')
 {
-    $result = array_reduce($comparisonArray, function ($acc, $item) use ($oldKey) {
+    return flatten(array_map(function ($item) use ($oldKey) {
         $status = $item['status'];
         $key = $item['key'];
 
@@ -25,24 +25,22 @@ function getPlain(array $comparisonArray, string $oldKey = '')
 
         switch ($status) {
             case 'add':
-                $acc[] = "Property '{$key}' was added with value: {$item['value']}";
+                return "Property '{$key}' was added with value: {$item['value']}";
                 break;
             case 'remove':
-                $acc[] = "Property '{$key}' was removed";
+                return "Property '{$key}' was removed";
                 break;
             case 'update':
                 $oldValue = gettype($item['oldValue']) != 'array' ? getValue($item['oldValue']) : "[complex value]";
                 $item['value'] = is_null($item['value']) ? 'null' : $item['value'];
-                $acc[] = "Property '{$key}' was updated. From {$item['value']} to {$oldValue}";
+                return "Property '{$key}' was updated. From {$item['value']} to {$oldValue}";
                 break;
             case 'root':
-                $acc[] = getPlain($item['children'], $key);
+                return getPlain($item['children'], $key);
         }
+    }, $comparisonArray));
 
-        return $acc;
-    }, []);
-
-    return flatten($result);
+    //return flatten($result);
 }
 
 function getPlainDiffFormat(array $array)
