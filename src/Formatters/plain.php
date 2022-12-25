@@ -11,7 +11,7 @@ function getPlain(array $comparisonArray, string $oldKey = '')
     return flatten(array_map(function ($item) use ($oldKey) {
         $status = $item['status'];
 
-        if (isset($oldKey) and $oldKey != '') {
+        if ($oldKey != '') {
             $key = "{$oldKey}.{$item['key']}";
         } else {
             $key = $item['key'];
@@ -21,18 +21,14 @@ function getPlain(array $comparisonArray, string $oldKey = '')
             case 'add':
                 $value = getValue($item['value']);
                 return "Property '{$key}' was added with value: {$value}";
-                break;
             case 'remove':
                 return "Property '{$key}' was removed";
-                break;
             case 'update':
                 $value = getValue($item['value']);
                 $oldValue = getValue($item['oldValue']);
                 return "Property '{$key}' was updated. From {$value} to {$oldValue}";
-                break;
             case 'root':
                 return getPlain($item['children'], $key);
-                break;
             case 'no change':
                 return [];
         }
