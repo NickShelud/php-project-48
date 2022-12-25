@@ -10,19 +10,19 @@ function getStylish(array $comparisonArray)
         $status = $item['status'];
 
         if ($status === 'no change') {
-            return $acc[$key] = $item['value'];
+            $acc[$key] = $item['value'];
         } elseif ($status === 'update') {
-            return $acc['- ' . $key] = $item['value'];
-           return  $acc['+ ' . $key] = $item['oldValue'];
+            $acc['- ' . $key] = $item['value'];
+            $acc['+ ' . $key] = $item['oldValue'];
         } elseif ($status === 'remove') {
-           return  $acc['- ' . $key] = $item['value'];
+            $acc['- ' . $key] = $item['value'];
         } elseif ($status === 'add') {
-           return  $acc['+ ' . $key] = $item['value'];
+            $acc['+ ' . $key] = $item['value'];
         } elseif ($status === 'root') {
-           return  $acc[$key] = getStylish($item['children']);
+            $acc[$key] = getStylish($item['children']);
         }
 
-        //return $acc;
+        return $acc;
     }, []);
 
     return $result;
