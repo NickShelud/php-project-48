@@ -39,9 +39,6 @@ function getPlain(array $comparisonArray, string $oldKey = '')
 
 function getPlainDiffFormat(array $array)
 {
-    $encode = json_encode($array, JSON_PRETTY_PRINT);
-    $char = ['"', ',', '    '];
-    $trim = trim(str_replace($char, '', $encode), '[]');
-
-    return trim($trim);
+    $encode = implode("\n", $array);
+    return $encode;
 }
