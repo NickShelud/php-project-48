@@ -2,12 +2,6 @@
 
 namespace Differ\Build;
 
-function getUnionContent(array $firstArray, array $secondArray)
-{
-    $merge = array_merge($firstArray, $secondArray);
-    return ksort($merge);
-}
-
 function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
 {
     $merge = array_merge($contentFromFirstFile, $contentFromSecondFile);
