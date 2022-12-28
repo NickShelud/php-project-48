@@ -1,1 +1,1 @@
-{"version":1,"defects":{"UnitTest\\Tests\\Test::testGetDiffCalc":4,"UnitTest\\Tests\\Test::testGenDiff":4},"times":{"UnitTest\\Tests\\Test::testGetDiffCalc":0.444,"UnitTest\\Tests\\Test::testGenDiff":0.583}}
+{"version":1,"defects":{"UnitTest\\Tests\\Test::testGetDiffCalc":4,"UnitTest\\Tests\\Test::testGenDiff":4},"times":{"UnitTest\\Tests\\Test::testGetDiffCalc":0.444,"UnitTest\\Tests\\Test::testGenDiff":0.653}}
