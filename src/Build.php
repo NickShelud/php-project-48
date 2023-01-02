@@ -2,11 +2,14 @@
 
 namespace Differ\Build;
 
+use function Functional\sort;
+
 function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
 {
     $merge = array_merge($contentFromFirstFile, $contentFromSecondFile);
-    ksort($merge);
-    $keys = array_keys($merge);
+    $mergeKeys = array_keys($merge);
+    $keys = sort($mergeKeys, fn ($a, $b) => strcmp($a, $b));
+    //$keys = array_keys($merge);
 
     return array_map(function ($key) use ($contentFromFirstFile, $contentFromSecondFile) {
         if (key_exists($key, $contentFromFirstFile) and key_exists($key, $contentFromSecondFile)) {
