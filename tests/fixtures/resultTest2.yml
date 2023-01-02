@@ -28,8 +28,8 @@
       + nest: str
     }
   - group2: {
-        abc: 12345
-        deep: {
+        deep: 12345
+        abc: {
             id: 45
         }
     }
