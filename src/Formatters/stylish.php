@@ -24,7 +24,7 @@ function getStylish(array $comparisonArray, int $depth = 1)
             if (is_array($item['value'])) {
                 return "{$smallIndent}- {$key}: {{$value}\n$smallIndent  }\n$smallIndent+ {$key}: {$oldValue}";
             } elseif (is_array($item['oldValue'])) {
-                return "{$smallIndent}- {$key}: {$value}\n$smallIndent+ {$key}: {{$oldValue}\n{$smallIndent}}";
+                return "{$smallIndent}- {$key}: {$value}\n$smallIndent+ {$key}: {{$oldValue}\n{$smallIndent}  }";
             }
 
             return "{$smallIndent}- {$key}: {$value}\n$smallIndent+ {$key}: {$oldValue}";
