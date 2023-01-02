@@ -15,32 +15,22 @@ function getStylish(array $comparisonArray, int $depth = 1)
         $smallIndent = getSmallIndent($depth);
 
         if ($status === 'no change') {
-            $value = getArrayToStr($item['value'], $depth);
-            return "{$indent}{$key}: {$value}";
+            $operator = ' ';
+
+            return getStylishFormat($item['value'], $key, $smallIndent, $operator, $depth);
         } elseif ($status === 'update') {
-            $value = getArrayToStr($item['value'], $depth);
-            $oldValue = getArrayToStr($item['oldValue'], $depth);
+            $newValue = getStylishFormat($item['value'], $key, $smallIndent, '-', $depth);
+            $oldValue = getStylishFormat($item['oldValue'], $key, $smallIndent, '+', $depth);
 
-            if (is_array($item['value'])) {
-                return "{$smallIndent}- {$key}: {{$value}\n$smallIndent  }\n$smallIndent+ {$key}: {$oldValue}";
-            } elseif (is_array($item['oldValue'])) {
-                return "{$smallIndent}- {$key}: {$value}\n$smallIndent+ {$key}: {{$oldValue}\n{$smallIndent}  }";
-            }
-
-            return "{$smallIndent}- {$key}: {$value}\n$smallIndent+ {$key}: {$oldValue}";
+            return $newValue . "\n" . $oldValue;
         } elseif ($status === 'remove') {
-            $value = getArrayToStr($item['value'], $depth);
+            $operator = '-';
 
-            if (is_array($item['value'])) {
-                return "{$smallIndent}- {$key}: {{$value}\n  {$smallIndent}}";
-            }
-            return "{$smallIndent}- {$key}: {$value}";
+            return getStylishFormat($item['value'], $key, $smallIndent, $operator, $depth);
         } elseif ($status === 'add') {
-            $value = getArrayToStr($item['value'], $depth);
-            if (is_array($item['value'])) {
-                return "{$smallIndent}+ $key: {" . "$value\n  {$smallIndent}}";
-            }
-            return "{$smallIndent}+ $key: {$value}";
+            $operator = '+';
+
+            return getStylishFormat($item['value'], $key, $smallIndent, $operator, $depth);
         } elseif ($status === 'root') {
             $children = implode("\n", getStylish($item['children'], $depth + 1));
             return "{$indent}{$key}: {\n" . $children . "\n{$indent}}";
@@ -48,6 +38,14 @@ function getStylish(array $comparisonArray, int $depth = 1)
     }, $comparisonArray);
 }
 
+function getStylishFormat(mixed $value, mixed $key, string $smallIndent, string $operator, int $depth)
+{
+    $newValue = getArrayToStr($value, $depth);
+    if (is_array($value)) {
+        return "{$smallIndent}{$operator} $key: {" . "$newValue\n  {$smallIndent}}";
+    }
+    return "{$smallIndent}{$operator} $key: {$newValue}";
+}
 
 function getStylishDiffFormat(array $comparisonArray)
 {
