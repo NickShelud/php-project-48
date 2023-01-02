@@ -85,18 +85,16 @@ function getArrayToStr(mixed $value, int $depth): string
     if (!is_array($value)) {
         return getString($value);
     }
-    $key = key($value);
     $keys = array_keys($value);
-    $result = array_map(function ($item) use ($key, $depth, $keys) {
+    $result = array_map(function ($item, $key) use ($depth) {
         $indent = getIndent($depth + 1);
         if (is_array($item)) {
             return "\n{$indent}{$key}: {" . getArrayToStr($item, $depth + 1) . "\n{$indent}}";
         } else {
-            $key = $keys[count($keys) - 1];
             return "\n{$indent}$key: $item";
         }
 
         //print_r($result);
-    }, $value);
+    }, $value, $keys);
     return str_replace("\n\n", "\n", implode("\n", $result));
 }
