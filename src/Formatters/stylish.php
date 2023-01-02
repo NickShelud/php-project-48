@@ -55,7 +55,7 @@ function getStylishDiffFormat(array $comparisonArray)
     return "{\n" . $result . "\n}";
 }
 
-function getString(mixed $value): string
+function getString(mixed $value)
 {
     if (is_bool($value)) {
         return $value ? 'true' : 'false';
