@@ -1,2 +1,4 @@
 /vendor/
 .build/
+.phpunit.result.cache
+test-reporter-latest-linux-amd64
