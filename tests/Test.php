@@ -28,7 +28,7 @@ class Test extends TestCase
         $correctOutputSecondTest = file_get_contents(__DIR__ . "/fixtures/resultTest2.yml");
         $this->assertEquals($correctOutputSecondTest, genDiff($testStylishPath3, $testStylishPath4, 'stylish'));
     }
-    
+
     public function testPlain(): void
     {
         $testPlainPath1 = __DIR__ . "/fixtures/file1.json";
