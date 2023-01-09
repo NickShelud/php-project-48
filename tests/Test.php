@@ -8,7 +8,15 @@ use function Differ\Differ\genDiff;
 
 class Test extends TestCase
 {
-    public function testGenDiff(): void
+    public function testDefault(): void
+    {
+        $firstPath = __DIR__ . "/fixtures/file1.json";
+        $secondPath = __DIR__ . "/fixtures/file2.json";
+        $correctOutput = file_get_contents(__DIR__ . "/fixtures/resultTest1.json");
+        $this->assertEquals($correctOutput, genDiff($firstPath, $secondPath));
+    }
+
+    public function testStylish(): void
     {
         $testStylishPath1 = __DIR__ . "/fixtures/file1.json";
         $testStylishPath2 = __DIR__ . "/fixtures/file2.json";
@@ -19,12 +27,18 @@ class Test extends TestCase
         $testStylishPath4 = __DIR__ . "/fixtures/file4.yml";
         $correctOutputSecondTest = file_get_contents(__DIR__ . "/fixtures/resultTest2.yml");
         $this->assertEquals($correctOutputSecondTest, genDiff($testStylishPath3, $testStylishPath4, 'stylish'));
-
+    }
+    
+    public function testPlain(): void
+    {
         $testPlainPath1 = __DIR__ . "/fixtures/file1.json";
         $testStylishPath2 = __DIR__ . "/fixtures/file2.json";
         $correctOutputThirdTest = file_get_contents(__DIR__ . "/fixtures/resultTest3.txt");
         $this->assertEquals($correctOutputThirdTest, genDiff($testPlainPath1, $testStylishPath2, 'plain'));
+    }
 
+    public function testJson(): void
+    {
         $testJsonPath1 = __DIR__ . "/fixtures/file1.json";
         $testJsonPath2 = __DIR__ . "/fixtures/file2.json";
         $correctOutputFourthTest = file_get_contents(__DIR__ . "/fixtures/resultTest4.json");
