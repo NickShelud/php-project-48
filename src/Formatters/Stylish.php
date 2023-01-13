@@ -2,8 +2,6 @@
 
 namespace DiffCalc\Formatter\Stylish;
 
-use function Differ\Build\getValue;
-
 function getStylish(array $comparisonArray, int $depth = 1)
 {
 
