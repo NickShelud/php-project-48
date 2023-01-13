@@ -91,8 +91,6 @@ function getArrayToStr(mixed $value, int $depth): string
         } else {
             return "\n{$indent}$key: $item";
         }
-
-        //print_r($result);
     }, $value, $keys);
     return str_replace("\n\n", "\n", implode("\n", $result));
 }

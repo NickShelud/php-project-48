@@ -3,7 +3,6 @@
 namespace DiffCalc\Formatter\Plain;
 
 use function Functional\flatten;
-use function Differ\Build\getValue;
 
 function getPlain(array $comparisonArray, string $oldKey = '')
 {
@@ -33,12 +32,26 @@ function getPlain(array $comparisonArray, string $oldKey = '')
                 return [];
         }
     }, $comparisonArray));
-
-    //return flatten($result);
 }
 
 function getPlainDiffFormat(array $array)
 {
     $encode = implode("\n", $array);
     return $encode;
+}
+
+function getValue(mixed $value)
+{
+    if ($value === true) {
+        return 'true';
+    } elseif ($value === false) {
+        return 'false';
+    } elseif ($value === null) {
+        return 'null';
+    } elseif (gettype($value) === 'string') {
+        return "'{$value}'";
+    } elseif (is_array($value)) {
+        return "[complex value]";
+    }
+    return $value;
 }
