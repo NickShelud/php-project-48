@@ -10,13 +10,14 @@ use function DiffCalc\Formatter\Json\getJson;
 
 function getFormatted(array $comparisonArray, string $format = 'stylish')
 {
-    if ($format === 'stylish') {
-        $outputStylish = getStylish($comparisonArray);
-        return getStylishDiffFormat($outputStylish);
-    } elseif ($format === 'plain') {
-        $outputPlain = getPlain($comparisonArray);
-        return getPlainDiffFormat($outputPlain);
-    } elseif ($format === 'json') {
-        return getJson($comparisonArray);
+    switch ($format) {
+        case 'stylish':
+            $outputStylish = getStylish($comparisonArray);
+            return getStylishDiffFormat($outputStylish);
+        case 'plain':
+            $outputPlain = getPlain($comparisonArray);
+            return getPlainDiffFormat($outputPlain);
+        case 'json':
+            return getJson($comparisonArray);
     }
 }

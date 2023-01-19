@@ -3,20 +3,13 @@
 namespace DiffCalc\Parses;
 
 use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Yaml\Parser;
 
-function pathToArray(string $path)
+function pathToArray(string $path, string $format)
 {
-    $format = Yaml::parse($path, Yaml::PARSE_OBJECT_FOR_MAP);
-    $formatFile = pathinfo($format, PATHINFO_EXTENSION);
-    if ($formatFile === 'json') {
+    if ($format === 'json') {
         $file = file_get_contents($path);
-        if ($file === false) {
-            return false;
-        }
-
         return json_decode($file, true);
-    } elseif ($formatFile === 'yml' or $formatFile === 'yaml') {
+    } elseif ($format === 'yml' or $format === 'yaml') {
         return Yaml::parseFile($path);
     }
 }

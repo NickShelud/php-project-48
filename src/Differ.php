@@ -2,6 +2,8 @@
 
 namespace Differ\Differ;
 
+use Symfony\Component\Yaml\Yaml;
+
 use function Functional\flatten;
 use function DiffCalc\Parses\pathToArray;
 use function DiffCalc\Formatter\getFormatted;
@@ -9,8 +11,10 @@ use function Functional\sort;
 
 function genDiff(string $firstPath, string $secondPath, string $formatOutput = 'stylish')
 {
-    $contentFromFirstFile = pathToArray($firstPath);
-    $contentFromSecondFile = pathToArray($secondPath);
+    $formatFirstFile = getFormat($firstPath);
+    $formatSecondFile = getFormat($secondPath);
+    $contentFromFirstFile = pathToArray($firstPath, $formatFirstFile);
+    $contentFromSecondFile = pathToArray($secondPath, $formatSecondFile);
 
     $buildDiff = getBuildDiff($contentFromFirstFile, $contentFromSecondFile);
 
@@ -54,4 +58,12 @@ function getBuildDiff(array $contentFromFirstFile, array $contentFromSecondFile)
             'value' => $contentFromSecondFile[$key]];
         }
     }, $keys);
+}
+
+function getFormat(string $path)
+{
+    $format = Yaml::parse($path, Yaml::PARSE_OBJECT_FOR_MAP);
+    $formatFile = pathinfo($format, PATHINFO_EXTENSION);
+
+    return $formatFile;
 }
