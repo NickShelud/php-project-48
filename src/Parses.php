@@ -14,4 +14,3 @@ function pathToArray(string $path, string $format)
         return Yaml::parseFile($path);
     }
 }
-
