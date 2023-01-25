@@ -27,6 +27,11 @@ $ make lint
 make test-coverage
 ```
 
+### Help
+```sh
+$ ./bin/gendiff -h
+```
+
 ### Comparing flat json files
 [![asciicast](https://asciinema.org/a/541742.svg)](https://asciinema.org/a/541742)
 
